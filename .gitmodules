@@ -1,0 +1,6 @@
+[submodule "theia"]
+	path = theia
+	url = https://github.com/theia-ide/theia.git
+[submodule "jsoneditor"]
+	path = jsoneditor
+	url = git@github.com:eclipsesource/jsoneditor.git
