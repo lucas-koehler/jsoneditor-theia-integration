@@ -21,7 +21,10 @@ yarn install && \
 yarn run setup
 ```
 
-afterwards manually install JsonForms from a local build:
+During the setup you might be asked whether you want to replace diverged package.json or index.html. Always answer with no!
+
+
+Afterwards, manually install JsonForms from a local build:
 example: jsonforms is a sibling folder of
 ```
 npm install ../jsonforms
