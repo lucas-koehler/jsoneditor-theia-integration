@@ -25,7 +25,7 @@ During the setup you might be asked whether you want to replace diverged package
 
 
 Afterwards, manually install JsonForms from a local build.
-The currently tested jsonforms build working with the current integration can be found here: 'https://github.com/lucas-koehler/jsonforms/tree/jsonforms2_reference_resolvement'
+The currently tested jsonforms build working with the current integration can be found here: https://github.com/lucas-koehler/jsonforms/tree/jsonforms2_robustness_improve
 
 Install example: jsonforms is a sibling folder of
 ```
