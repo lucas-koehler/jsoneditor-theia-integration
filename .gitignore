@@ -9,3 +9,5 @@ yangster-app/package.json
 yangster-app/webpack.config.js
 yangster-app/src-gen
 lerna-debug.log
+
+**/npm-debug.log
