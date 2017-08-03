@@ -1,0 +1,48 @@
+{
+  "private": true,
+  "name": "yangster-app",
+  "version": "0.0.1",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@theia/core": "0.1.0",
+    "@theia/editor": "0.1.0",
+    "@theia/filesystem": "0.1.0",
+    "@theia/languages": "0.1.0",
+    "@theia/monaco": "0.1.0",
+    "@theia/navigator": "0.1.0",
+    "@theia/preferences": "0.1.0",
+    "@theia/terminal": "0.1.0",
+    "@theia/workspace": "0.1.0",
+    "theia-yang-extension": "0.0.1"
+  },
+  "scripts": {
+    "build": "yarn run build:frontend && yarn run build:backend",
+    "build:backend": "mkdir -p lib && cp -r src-gen/frontend/* lib",
+    "build:frontend": "webpack",
+    "clean": "rimraf lib",
+    "cold:start": "yarn run clean && yarn start",
+    "start": "yarn run start:backend",
+    "start:backend": "node ./src-gen/backend/main.js --root-dir=../workspace | bunyan",
+    "start:backend:debug": "node ./src-gen/backend/main.js --root-dir=../workspace --loglevel=debug | bunyan",
+    "start:backend:socket": "node ./src-gen/backend/main.js --root-dir=../workspace --YANG_LSP=5007 --loglevel=debug | bunyan",
+    "start:frontend": "webpack-dev-server --open",
+    "test:ui": "yarn run start & wdio --waitforTimeout 300000 wdio.conf.js",
+    "watch": "webpack -w"
+  },
+  "devDependencies": {
+    "bunyan": "^1.8.10",
+    "circular-dependency-plugin": "^2.0.0",
+    "concurrently": "^3.5.0",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.1",
+    "file-loader": "^0.11.1",
+    "font-awesome-webpack": "0.0.5-beta.2",
+    "less": "^2.7.2",
+    "ncp": "^2.0.0",
+    "rimraf": "^2.6.1",
+    "source-map-loader": "^0.2.1",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.5.0"
+  }
+}
