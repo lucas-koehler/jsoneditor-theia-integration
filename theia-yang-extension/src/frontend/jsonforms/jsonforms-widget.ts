@@ -11,16 +11,18 @@ import 'jsoneditor-ma';
 let num = 0;
 export class JSONFormsWidget extends Widget {
 
-    constructor(data: object) {
+  private jsonEditor: JsonEditor;
+
+    constructor(data: object, private saveCallback: (data: Object) => void) {
         super();
         // const jsonForms = document.createElement('json-forms') as JsonFormsElement;
-        const jsonEditor = document.createElement('json-editor') as JsonEditor;
-        jsonEditor.classList.add('dark');
-        jsonEditor.setImageMapping(imageProvider);
-        jsonEditor.setLabelMapping(labelProvider);
-        jsonEditor.setModelMapping(modelMapping);
-        jsonEditor.schema = ecore_schema;
-        jsonEditor.data = data;
+        this.jsonEditor = document.createElement('json-editor') as JsonEditor;
+        this.jsonEditor.classList.add('dark');
+        this.jsonEditor.setImageMapping(imageProvider);
+        this.jsonEditor.setLabelMapping(labelProvider);
+        this.jsonEditor.setModelMapping(modelMapping);
+        this.jsonEditor.schema = ecore_schema;
+        this.jsonEditor.data = data;
         // jsonForms.data = data;
         // jsonForms.uiSchema =
         // {
@@ -30,9 +32,14 @@ export class JSONFormsWidget extends Widget {
         //     }
         // } as ControlElement;
 
-        this.node.appendChild(jsonEditor);
+        this.node.appendChild(this.jsonEditor);
         this.node.style.overflowY = 'scroll';
         num++;
         this.id = 'jsoneditor-' + num;
+    }
+
+    close() {
+      super.close();
+      this.saveCallback(this.jsonEditor.data);
     }
 }

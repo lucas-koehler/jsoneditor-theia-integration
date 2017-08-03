@@ -1,5 +1,5 @@
 import { FrontendApplication, OpenHandler, OpenerOptions } from '@theia/core/lib/browser';
-import { MaybePromise, SelectionService, ResourceProvider } from '@theia/core/lib/common';
+import { MaybePromise, SelectionService, ResourceProvider, Resource } from '@theia/core/lib/common';
 import URI from '@theia/core/lib/common/uri';
 import { JSONFormsWidget } from './jsonforms-widget';
 import { inject, injectable } from "inversify";
@@ -54,7 +54,7 @@ export class JSONFormsOpenHandler implements OpenHandler {
   open(uri: URI, options?: OpenerOptions): MaybePromise<object | undefined> {
     return this.resourceProvider(uri).then(resource => {
       return resource.readContents().then(content => {
-        const jsonforms = new JSONFormsWidget(JSON.parse(content));
+        const jsonforms = new JSONFormsWidget(JSON.parse(content), this.saveCallback(resource));
         jsonforms.title.caption = uri.path.base;
         jsonforms.title.label = uri.path.base;
         jsonforms.title.closable = true;
@@ -64,5 +64,13 @@ export class JSONFormsOpenHandler implements OpenHandler {
       });
     });
 
+  }
+
+  private saveCallback = (resource: Resource) => (data: Object): void => {
+    if ( resource.saveContents !== undefined ) {
+      resource.saveContents(JSON.stringify(data, null, 2), { encoding: 'UTF-8' });
+    } else {
+      console.warn('resource cannot save');
+    }
   }
 }
