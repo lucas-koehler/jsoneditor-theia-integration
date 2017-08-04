@@ -14,7 +14,8 @@
       "@theia/languages": "../theia/packages/languages",
       "@theia/monaco": "../theia/packages/monaco",
       "theia-yang-extension": "../theia-yang-extension",
-      "jsoneditor-ma": "../jsoneditor"
+      "jsoneditor-ma": "../jsoneditor",
+      "jsongraph-ma": "../jsongraph"
     },
     "node_modulesPath": "../node_modules"
   }

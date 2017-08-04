@@ -4,3 +4,6 @@
 [submodule "jsoneditor"]
 	path = jsoneditor
 	url = https://github.com/eclipsesource/jsoneditor.git
+[submodule "jsongraph"]
+	path = jsongraph
+	url = https://github.com/eclipsesource/jsongraph.git

@@ -2,6 +2,7 @@
   "lerna": "2.0.0",
   "npmClient": "yarn",
   "packages": [
+    "jsongraph",
     "jsoneditor",
     "theia/packages/*",
     "theia-yang-extension",

@@ -1,12 +1,13 @@
 import { FrontendApplication, OpenHandler, OpenerOptions } from '@theia/core/lib/browser';
 import { MaybePromise, SelectionService, ResourceProvider, Resource } from '@theia/core/lib/common';
 import URI from '@theia/core/lib/common/uri';
-import { JSONFormsWidget } from './jsonforms-widget';
+import { JsonGraphWidget } from './jsongraph-widget';
 import { inject, injectable } from "inversify";
 
+// TODO finish adaption to jsongraph
 @injectable()
-export class JSONFormsOpenHandler implements OpenHandler {
-  readonly id = "jsonforms-opener";
+export class JsonGraphOpenHandler implements OpenHandler {
+  readonly id = "jsongraph-opener";
   constructor( @inject(FrontendApplication) private app: FrontendApplication,
   @inject(SelectionService) readonly selectionService: SelectionService,
   @inject(ResourceProvider) private readonly resourceProvider: ResourceProvider) {
@@ -14,7 +15,7 @@ export class JSONFormsOpenHandler implements OpenHandler {
 
   // Defines the editor's name in the open with menu
   get label() {
-    return 'JsonEditor - Ecore';
+    return 'JsonGraph - Ecore';
   }
 
   /**
@@ -25,6 +26,7 @@ export class JSONFormsOpenHandler implements OpenHandler {
    * A returned value indicating a priorify of this handler.
    */
   canHandle(uri: URI, options?: OpenerOptions): MaybePromise<number> {
+    // TODO adapt check
     if (uri.path.ext === '.json') {
       return 1000;
     }
@@ -39,7 +41,7 @@ export class JSONFormsOpenHandler implements OpenHandler {
   open(uri: URI, options?: OpenerOptions): MaybePromise<object | undefined> {
     return this.resourceProvider(uri).then(resource => {
       return resource.readContents().then(content => {
-        const jsonforms = new JSONFormsWidget(JSON.parse(content), this.saveCallback(resource));
+        const jsonforms = new JsonGraphWidget(JSON.parse(content), this.saveCallback(resource));
         jsonforms.title.caption = uri.path.base;
         jsonforms.title.label = uri.path.base;
         jsonforms.title.closable = true;
