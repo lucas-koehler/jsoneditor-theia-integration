@@ -16,6 +16,7 @@
     "@types/node": "^8.0.14",
     "jsonforms": "next",
     "jsoneditor-ma": "0.0.1-alpha.3",
+    "jsongraph-ma": "0.0.2",
     "ajv": "^5.2.2"
   },
   "scripts": {
@@ -47,6 +48,7 @@
     "build"
   ],
   "theiaExtensions": [
-    { "frontend": "lib/jsonforms-module" }
+    { "frontend": "lib/jsonforms/jsonforms-module" },
+    { "frontend": "lib/jsongraph/jsongraph-module" }
   ]
 }

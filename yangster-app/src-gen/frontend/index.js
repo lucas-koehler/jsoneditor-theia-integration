@@ -39,7 +39,8 @@ module.exports = Promise.resolve()
     .then(function () { return Promise.resolve(require('@theia/editor/lib/browser/editor-frontend-module')).then(load) })
     .then(function () { return Promise.resolve(require('@theia/languages/lib/browser/languages-frontend-module')).then(load) })
     .then(function () { return Promise.resolve(require('@theia/monaco/lib/browser/monaco-browser-module')).then(load) })
-    .then(function () { return Promise.resolve(require('theia-yang-extension/lib/jsonforms-module')).then(load) })
+    .then(function () { return Promise.resolve(require('theia-yang-extension/lib/jsonforms/jsonforms-module')).then(load) })
+    .then(function () { return Promise.resolve(require('theia-yang-extension/lib/jsongraph/jsongraph-module')).then(load) })
     .then(start).catch(reason => {
         console.error('Failed to start the frontend application.');
         if (reason) {
